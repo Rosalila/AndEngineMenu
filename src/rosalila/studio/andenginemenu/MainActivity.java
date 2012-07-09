@@ -1,5 +1,6 @@
 package rosalila.studio.andenginemenu;
 
+import org.andengine.audio.music.MusicFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -59,17 +60,23 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnMenuItemC
 	@Override
 	public EngineOptions onCreateEngineOptions() {
 		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-
-		return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
+ 
+		EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
+		engineOptions.getAudioOptions().setNeedsMusic(true);
+		return engineOptions;
+		
 	}
 
 	@Override
 	public void onCreateResources() {
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+		MusicFactory.setAssetBasePath("mfx/");
 		
 		Global.putResource(Global.TEXTURE_MANAGER,this.getTextureManager());
 		Global.putResource(Global.VERTEX_BUFFERED_OBJECT_MANAGER,this.getVertexBufferObjectManager());
+		Global.putResource(Global.MUSIC_MANAGER,this.mEngine.getMusicManager());
 		Global.putResource(Global.MAIN_ACTIVITY,this);
+		
 	}
 
 	@Override

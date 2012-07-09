@@ -10,6 +10,7 @@ public class Global {
 	public static final String TEXTURE_MANAGER = "texture_manager";
 	public static final String MAIN_ACTIVITY = "main_activity";
 	public static final String GAME_FONT = "game_text_font";
+	public static final String MUSIC_MANAGER = "music_manager";
 	
 	public static void putResource(String name,Object res)
 	{
