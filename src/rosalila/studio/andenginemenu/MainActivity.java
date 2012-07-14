@@ -139,7 +139,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnMenuItemC
 			else if(main_menu.MENU_DATINGSIM==item_id)
 			{
 				/* End Activity. */
-				mEngine.setScene(new DatingSimScene());
+				mEngine.setScene(new DatingSimScene().getActualScene());
 				
 				return true;
 			}
