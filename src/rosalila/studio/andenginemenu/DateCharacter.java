@@ -25,6 +25,16 @@ public class DateCharacter {
 		this.emotionSprite.put(emotionKey, mSprite);
 	}
 	
+	public Boolean removeEmotionSprite(String emotionKey){
+		if(this.emotionSprite.containsKey(emotionKey)){
+			this.emotionSprite.remove(emotionKey);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	public SceneSprite getEmotionSprite(String emotionKey){
 		if(this.emotionSprite.containsKey(emotionKey)){
 			return this.emotionSprite.get(emotionKey);

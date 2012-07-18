@@ -7,8 +7,9 @@ public class DatingSimScene extends Scene {
 
 	public DatingSimScene()
 	{
-		this.temp = new DateScene("dating_sim/bg3.png", 720, 480, 0, 0, "chuy_invasion.ogg");
-		this.temp.addCharacter("Pearl", "Normal", "dating_sim/chicas/pirata_normal.png", 222, 342, 30, 30, 25);
+		this.temp = new DateScene("dating_sim/bg3.png", 720, 480, 0, 0);
+		//this.temp.setMusic("chuy_invasion.ogg", false);
+		this.temp.addCharacter("Pearl", "Normal", "dating_sim/chicas/pirata_normal.png", 222, 342, 30, 60, 25);
 	}
 	
 	public Scene getActualScene()

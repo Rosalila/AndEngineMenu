@@ -11,9 +11,13 @@ import android.content.Context;
 public class DateScene extends Scene{
 	private SceneSprite background;
 	private Music music;
+	private SceneSprite textBox;
 	private DateCharacter character;
-
-	public DateScene(String bgPath, int bgSpriteWidth, int bgSpriteHeight, int bgX, int bgY, String musicPath ){
+	
+	
+	//Que ondas con los unloads???!!!
+	
+	public DateScene(String bgPath, int bgSpriteWidth, int bgSpriteHeight, int bgX, int bgY){
 		super();
 		this.setBackgroundEnabled(false);
 		
@@ -21,10 +25,14 @@ public class DateScene extends Scene{
 		this.background = new SceneSprite(bgPath, bgSpriteWidth, bgSpriteHeight, bgX, bgY);
 		this.attachChild(this.background.getSprite());
 		
-		//Creates music
+		this.music = null;
+		this.textBox = new SceneSprite("dating_sim/textBox.png",720,120,0,360);
+	}
+	
+	public void setMusic(String musicPath, Boolean loop){
 		try {
 			this.music = MusicFactory.createMusicFromAsset((MusicManager)Global.getResource(Global.MUSIC_MANAGER), (Context)Global.getResource(Global.MAIN_ACTIVITY), musicPath);
-			this.music.setLooping(true);
+			this.music.setLooping(loop);
 		} catch (final IOException e) {
 			Debug.e(e);
 		}
@@ -35,15 +43,17 @@ public class DateScene extends Scene{
 		this.attachChild(this.character.getEmotionSprite(charEmotionKey).getSprite()); //Que ondas con varios characters y las layers? 
 	}
 	
-	public DateCharacter getCharacter(){
-		return this.character;
-	}
-	
 	public void load(String charEmotionKey){
 		this.background.getAtlas().load();
 		if (charEmotionKey != null){
 			this.character.getEmotionSprite(charEmotionKey).getAtlas().load();
 		}
-		DateScene.this.music.play();
+		
+		this.attachChild(this.textBox.getSprite());
+		this.textBox.getAtlas().load();
+		
+		if(this.music != null){
+			this.music.play();
+		}
 	}
 }
